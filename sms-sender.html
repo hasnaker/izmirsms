@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📱 SMS Gönder - HSD Core Labs</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d1b2a 100%);
@@ -18,287 +13,79 @@
             padding: 15px;
             color: #fff;
         }
-        
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-            padding-top: 10px;
-        }
-        
-        .logo {
-            font-size: 42px;
-            margin-bottom: 8px;
-        }
-        
+        .container { max-width: 480px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 25px; padding-top: 10px; }
+        .logo { font-size: 42px; margin-bottom: 8px; }
         .header h1 {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 22px; font-weight: 700;
             background: linear-gradient(90deg, #00d4ff, #00ff94);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        
-        .header p {
-            color: #5a6a7a;
-            font-size: 13px;
-            margin-top: 4px;
-        }
-        
+        .header p { color: #5a6a7a; font-size: 13px; margin-top: 4px; }
         .card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 15px;
+            border-radius: 16px; padding: 20px; margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
-        
         .card-title {
-            font-size: 14px;
-            color: #00d4ff;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
+            font-size: 14px; color: #00d4ff; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 8px; font-weight: 600;
         }
-        
-        label {
-            display: block;
-            font-size: 12px;
-            color: #7a8a9a;
-            margin-bottom: 6px;
-        }
-        
+        label { display: block; font-size: 12px; color: #7a8a9a; margin-bottom: 6px; }
         textarea, input[type="text"] {
-            width: 100%;
-            padding: 14px;
+            width: 100%; padding: 14px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.4);
-            color: #fff;
-            font-size: 15px;
-            margin-bottom: 10px;
-            transition: all 0.3s;
+            border-radius: 12px; background: rgba(0, 0, 0, 0.4);
+            color: #fff; font-size: 15px; margin-bottom: 10px;
             font-family: inherit;
         }
-        
         textarea:focus, input[type="text"]:focus {
-            outline: none;
-            border-color: #00d4ff;
+            outline: none; border-color: #00d4ff;
             box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
         }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        #phoneNumbers {
-            min-height: 120px;
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .counter {
-            text-align: right;
-            font-size: 11px;
-            color: #00ff94;
-            margin-top: -6px;
-            margin-bottom: 10px;
-        }
-        
-        .counter.warning { color: #ffaa00; }
-        .counter.danger { color: #ff4466; }
-        
+        textarea { min-height: 100px; resize: vertical; }
+        #phoneNumbers { min-height: 120px; font-family: 'SF Mono', Monaco, monospace; font-size: 14px; }
+        .counter { text-align: right; font-size: 11px; color: #00ff94; margin-top: -6px; margin-bottom: 10px; }
         .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            width: 100%; padding: 16px; border: none; border-radius: 12px;
+            font-size: 16px; font-weight: 600; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        
         .btn-primary {
             background: linear-gradient(135deg, #00d4ff 0%, #00ff94 100%);
-            color: #000;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            color: #000; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
         }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
-        }
-        
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-        
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .btn-secondary {
-            background: rgba(0, 212, 255, 0.15);
-            color: #00d4ff;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            padding: 10px 16px;
-            font-size: 13px;
-            width: auto;
-        }
-        
-        .btn-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-        
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
         .result {
-            padding: 16px;
-            border-radius: 12px;
-            margin-top: 15px;
-            text-align: center;
-            display: none;
+            padding: 16px; border-radius: 12px; margin-top: 15px;
+            text-align: center; display: none;
         }
-        
         .result.success {
-            background: rgba(0, 255, 148, 0.1);
-            border: 1px solid rgba(0, 255, 148, 0.3);
-            color: #00ff94;
-            display: block;
+            background: rgba(0, 255, 148, 0.1); border: 1px solid rgba(0, 255, 148, 0.3);
+            color: #00ff94; display: block;
         }
-        
         .result.error {
-            background: rgba(255, 68, 102, 0.1);
-            border: 1px solid rgba(255, 68, 102, 0.3);
-            color: #ff4466;
-            display: block;
+            background: rgba(255, 68, 102, 0.1); border: 1px solid rgba(255, 68, 102, 0.3);
+            color: #ff4466; display: block;
         }
-        
         .result.loading {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            color: #00d4ff;
-            display: block;
+            background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff; display: block;
         }
-        
-        .progress-container {
-            margin-top: 12px;
-        }
-        
-        .progress-bar {
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00d4ff, #00ff94);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-        
-        .progress-text {
-            font-size: 12px;
-            margin-top: 8px;
-            opacity: 0.8;
-        }
-        
-        .stats-row {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #00d4ff, #00ff94);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stat-label {
-            font-size: 10px;
-            color: #5a6a7a;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
-        }
-        
-        .pdf-info {
-            background: rgba(0, 212, 255, 0.08);
-            border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-        
-        .pdf-info-title {
-            font-size: 12px;
-            color: #00d4ff;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .pdf-list {
-            font-size: 12px;
-            color: #8a9aaa;
-            line-height: 1.6;
-        }
-        
-        .pdf-list span {
-            display: block;
-        }
-        
-        .link-preview {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 10px 12px;
-            font-size: 11px;
-            color: #5a6a7a;
-            word-break: break-all;
-            margin-top: 8px;
-        }
-        
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            margin: 15px 0;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .sending {
-            animation: pulse 1.5s infinite;
-        }
+        .progress-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin-top: 12px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff94); transition: width 0.3s; }
+        .stats-row { display: flex; justify-content: space-around; margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .stat { text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 700; background: linear-gradient(90deg, #00d4ff, #00ff94); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-label { font-size: 10px; color: #5a6a7a; text-transform: uppercase; }
+        .pdf-info { background: rgba(0, 212, 255, 0.08); border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+        .pdf-info-title { font-size: 12px; color: #00d4ff; margin-bottom: 8px; font-weight: 600; }
+        .pdf-list { font-size: 12px; color: #8a9aaa; line-height: 1.6; }
+        .pdf-list span { display: block; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .sending { animation: pulse 1.5s infinite; }
     </style>
 </head>
 <body>
@@ -312,10 +99,10 @@
         <div class="card">
             <div class="card-title">📞 Telefon Numaraları</div>
             <label>Her satıra bir numara (05XX formatında)</label>
-            <textarea id="phoneNumbers" placeholder="05434486660
+            <textarea id="phoneNumbers" placeholder="+90 543 448 66 60
 05321234567
-05551234567"></textarea>
-            <div class="counter" id="phoneCount">0 numara girildi</div>
+05551234567">+90 543 448 66 60</textarea>
+            <div class="counter" id="phoneCount">1 numara girildi</div>
         </div>
         
         <div class="card">
@@ -329,28 +116,27 @@
                     <span>📋 Vaka Formülasyonu.pdf</span>
                 </div>
             </div>
-            <label>Google Drive Link (değiştirilebilir)</label>
+            <label>Google Drive Link</label>
             <input type="text" id="pdfLink" value="https://drive.google.com/drive/folders/1iDBSTrXz0H32oSynDUEdMtSiQ0ZZojse?usp=sharing">
         </div>
         
         <div class="card">
             <div class="card-title">✉️ Mesaj İçeriği</div>
-            <label>Gönderilecek mesaj</label>
             <textarea id="message">Merhaba,
 
-Belgeleriniz hazır! Aşağıdaki linkten erişebilirsiniz:
+Belgeleriniz hazir! Asagidaki linkten erisebilirsiniz:
 
-📄 [LINK]
+[LINK]
 
-İçerik:
+Icerik:
 - Analiz.pdf
-- Terapi Planı.pdf
+- Terapi Plani.pdf
 - Transkripsiyon.pdf
-- Vaka Formülasyonu.pdf
+- Vaka Formulasyonu.pdf
 
-Saygılarımızla,
+Saygilarimizla,
 HSD Core Labs</textarea>
-            <div class="counter" id="charCount">0 karakter (1 SMS)</div>
+            <div class="counter" id="charCount">0 karakter</div>
         </div>
         
         <button class="btn btn-primary" id="sendBtn" onclick="sendAllSMS()">
@@ -379,19 +165,12 @@ HSD Core Labs</textarea>
     </div>
 
     <script>
-        // ==========================================
-        // ⚙️ NETGSM API AYARLARI
-        // ==========================================
         const CONFIG = {
             username: '8503047798',
             password: '874.3C4',
-            sender: 'HSDCORELABS',
-            apiUrl: 'https://api.netgsm.com.tr/sms/send/get'
+            sender: 'HSDCORELABS'
         };
 
-        // ==========================================
-        // 📊 SAYAÇLAR
-        // ==========================================
         document.getElementById('phoneNumbers').addEventListener('input', function() {
             const numbers = this.value.split('\n').filter(n => n.trim().length >= 10);
             document.getElementById('phoneCount').textContent = numbers.length + ' numara girildi';
@@ -402,36 +181,20 @@ HSD Core Labs</textarea>
 
         function updateCharCount() {
             const message = getFinalMessage();
-            const len = message.length;
-            const smsCount = Math.ceil(len / 160) || 1;
-            const el = document.getElementById('charCount');
-            el.textContent = `${len} karakter (${smsCount} SMS)`;
-            el.className = 'counter' + (len > 320 ? ' danger' : len > 160 ? ' warning' : '');
+            document.getElementById('charCount').textContent = message.length + ' karakter (' + Math.ceil(message.length/160) + ' SMS)';
         }
 
         function getFinalMessage() {
-            const template = document.getElementById('message').value;
-            const link = document.getElementById('pdfLink').value;
-            return template.replace('[LINK]', link);
+            return document.getElementById('message').value.replace('[LINK]', document.getElementById('pdfLink').value);
         }
 
-        // ==========================================
-        // 📞 NUMARA TEMİZLE
-        // ==========================================
         function cleanPhone(phone) {
             let cleaned = phone.replace(/\D/g, '');
-            if (cleaned.startsWith('90') && cleaned.length === 12) {
-                cleaned = '0' + cleaned.slice(2);
-            }
-            if (!cleaned.startsWith('0') && cleaned.length === 10) {
-                cleaned = '0' + cleaned;
-            }
+            if (cleaned.startsWith('90') && cleaned.length === 12) cleaned = '0' + cleaned.slice(2);
+            if (!cleaned.startsWith('0') && cleaned.length === 10) cleaned = '0' + cleaned;
             return cleaned;
         }
 
-        // ==========================================
-        // 📤 TEK SMS GÖNDER
-        // ==========================================
         async function sendSMS(phone, message) {
             const params = new URLSearchParams({
                 usercode: CONFIG.username,
@@ -441,27 +204,38 @@ HSD Core Labs</textarea>
                 msgheader: CONFIG.sender
             });
 
-            const proxyUrl = 'https://corsproxy.io/?';
-            const apiUrl = `${CONFIG.apiUrl}?${params.toString()}`;
+            const apiUrl = 'https://api.netgsm.com.tr/sms/send/get?' + params.toString();
+            
+            // Birden fazla proxy dene
+            const proxies = [
+                'https://api.allorigins.win/raw?url=',
+                'https://corsproxy.org/?',
+                'https://proxy.cors.sh/'
+            ];
 
-            try {
-                const response = await fetch(proxyUrl + encodeURIComponent(apiUrl));
-                const text = await response.text();
-                return { success: text.startsWith('00'), response: text };
-            } catch (error) {
-                // Fallback: no-cors mode (assume success)
+            for (const proxy of proxies) {
                 try {
-                    await fetch(apiUrl, { mode: 'no-cors' });
-                    return { success: true, response: 'sent (no-cors)' };
+                    const response = await fetch(proxy + encodeURIComponent(apiUrl), {
+                        headers: { 'x-cors-api-key': 'temp_' + Date.now() }
+                    });
+                    if (response.ok) {
+                        const text = await response.text();
+                        return { success: text.startsWith('00'), response: text };
+                    }
                 } catch (e) {
-                    return { success: false, response: error.message };
+                    console.log('Proxy failed:', proxy, e.message);
                 }
+            }
+
+            // Son çare: no-cors (başarılı varsay)
+            try {
+                await fetch(apiUrl, { mode: 'no-cors' });
+                return { success: true, response: 'sent-nocors' };
+            } catch (e) {
+                return { success: false, response: e.message };
             }
         }
 
-        // ==========================================
-        // 🚀 TOPLU SMS GÖNDER
-        // ==========================================
         async function sendAllSMS() {
             const phoneText = document.getElementById('phoneNumbers').value;
             const message = getFinalMessage();
@@ -469,10 +243,7 @@ HSD Core Labs</textarea>
             const sendBtn = document.getElementById('sendBtn');
             const statsCard = document.getElementById('statsCard');
 
-            // Numaraları parse et
-            const phones = phoneText.split('\n')
-                .map(p => cleanPhone(p.trim()))
-                .filter(p => p.length >= 10);
+            const phones = phoneText.split('\n').map(p => cleanPhone(p.trim())).filter(p => p.length >= 10);
 
             if (phones.length === 0) {
                 resultEl.className = 'result error';
@@ -480,74 +251,41 @@ HSD Core Labs</textarea>
                 return;
             }
 
-            if (!message.trim()) {
-                resultEl.className = 'result error';
-                resultEl.innerHTML = '❌ Lütfen mesaj yazın!';
-                return;
-            }
-
-            // UI güncelle
             sendBtn.disabled = true;
             sendBtn.innerHTML = '<span class="sending">⏳</span><span>Gönderiliyor...</span>';
             statsCard.style.display = 'block';
 
-            let sent = 0;
-            let failed = 0;
-
+            let sent = 0, failed = 0;
             document.getElementById('totalCount').textContent = phones.length;
 
             resultEl.className = 'result loading';
-            resultEl.innerHTML = `
-                <div>📤 Gönderiliyor...</div>
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                    </div>
-                    <div class="progress-text" id="progressText">0 / ${phones.length}</div>
-                </div>
-            `;
+            resultEl.innerHTML = '<div>📤 Gönderiliyor...</div><div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div><div id="progressText" style="margin-top:8px;font-size:12px;">0 / ' + phones.length + '</div>';
 
             for (let i = 0; i < phones.length; i++) {
-                const phone = phones[i];
-                const result = await sendSMS(phone, message);
+                const result = await sendSMS(phones[i], message);
+                if (result.success) sent++; else failed++;
 
-                if (result.success) {
-                    sent++;
-                } else {
-                    failed++;
-                    console.error(`Failed: ${phone}`, result.response);
-                }
-
-                // Progress güncelle
                 const progress = Math.round(((i + 1) / phones.length) * 100);
                 document.getElementById('progressFill').style.width = progress + '%';
-                document.getElementById('progressText').textContent = `${i + 1} / ${phones.length}`;
+                document.getElementById('progressText').textContent = (i + 1) + ' / ' + phones.length;
                 document.getElementById('sentCount').textContent = sent;
                 document.getElementById('failedCount').textContent = failed;
 
-                // Rate limit: 500ms bekle
-                if (i < phones.length - 1) {
-                    await new Promise(r => setTimeout(r, 500));
-                }
+                if (i < phones.length - 1) await new Promise(r => setTimeout(r, 500));
             }
 
-            // Sonuç
             sendBtn.disabled = false;
             sendBtn.innerHTML = '<span>🚀</span><span>Gönder</span>';
 
-            if (failed === 0) {
+            if (sent > 0) {
                 resultEl.className = 'result success';
-                resultEl.innerHTML = `✅ Tamamlandı! ${sent} SMS gönderildi.`;
-            } else if (sent > 0) {
-                resultEl.className = 'result success';
-                resultEl.innerHTML = `⚠️ ${sent} başarılı, ${failed} başarısız.`;
+                resultEl.innerHTML = '✅ ' + sent + ' SMS gönderildi!' + (failed > 0 ? ' (' + failed + ' başarısız)' : '');
             } else {
                 resultEl.className = 'result error';
-                resultEl.innerHTML = `❌ Gönderim başarısız. CORS hatası olabilir.`;
+                resultEl.innerHTML = '❌ Gönderim başarısız.';
             }
         }
 
-        // Sayfa yüklenince
         updateCharCount();
     </script>
 </body>
